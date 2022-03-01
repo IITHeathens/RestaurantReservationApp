@@ -1,4 +1,4 @@
-package com.example.rest_reserv_app;
+package iit.heathens.reservationapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 

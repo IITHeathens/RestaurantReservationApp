@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.rest_reserv_app">
+    package="iit.heathens.reservationapp">
 
     <application
         android:allowBackup="true"
@@ -10,15 +10,6 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Rest_Reserv_App">
         <activity
-            android:name=".activity_intro"
-            android:exported="false" />
-        <activity
-            android:name=".activity_register"
-            android:exported="false" />
-        <activity
-            android:name=".activity_login"
-            android:exported="false" />
-        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -27,6 +18,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".activity_intro"
+            android:exported="false" />
+        <activity
+            android:name=".activity_register"
+            android:exported="false" />
+        <activity
+            android:name=".activity_login"
+            android:exported="false" />
     </application>
 
 </manifest>
