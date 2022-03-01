@@ -10,13 +10,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Rest_Reserv_App">
         <activity
+            android:name=".FactorPage"
+            android:exported="false" />
+        <activity
+            android:name=".PrototypeResults"
+            android:exported="false" />
+        <activity
+            android:name=".ConfirmationPage"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerSearch"
+            android:exported="false" />
+        <activity
+            android:name=".EnterFactors"
+            android:exported="false" />
+        <activity
             android:name=".activity_prototype_tester"
             android:exported="false" />
         <activity
             android:name=".activity_startup_page"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".RestaurantSearch"
             android:exported="true" />
         <activity
             android:name=".activity_intro"
