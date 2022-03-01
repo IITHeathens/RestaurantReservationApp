@@ -6,4 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity_prototype_tester">
 
+    <!-- Opens from the activity_startup_page.xml where the Open Prototype Tester Button is clicked -->
+
 </androidx.constraintlayout.widget.ConstraintLayout>
