@@ -3,17 +3,18 @@
 
 # Other files and folders
 .idea/
+.gradle/
+gradle/
 *.iml
-.gradle
-/local.properties
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
 local.properties
+build.gradle
+gradle.properties
+gradlew
+settings.gradle
+app/build.gradle
 
 # Executables
+gradlew.bat
 
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
