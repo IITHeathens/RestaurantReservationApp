@@ -14,7 +14,7 @@ print("Press Ctrl+C to stop.")
 # Section_2: Accuracy Score Printing
 try:
     while decision == "Y" or decision == "y":
-        print("The Accuracy Score is: " + str(main.getAccuracyScore()))
+        print("The Accuracy Score is: " + str(main.run(0, 100.0, 0, True)))
         time.sleep(0.5)
 except KeyboardInterrupt:
     print("Press Ctrl-C to terminate while statement")
@@ -33,7 +33,7 @@ if decision == "":
             refundableDeposit = int(input())
 
             print("")
-            print("Result: " + str(main.getPrediction(parking, distance, refundableDeposit)))
+            print("Result: " + main.run(parking, distance, refundableDeposit, False))
             print("")
     except KeyboardInterrupt:
         print("Press Ctrl-C to terminate while statement")
