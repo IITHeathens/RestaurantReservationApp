@@ -152,11 +152,31 @@ noShowDataset['No Shows Percentages'] = noShowPercentages
 noShowDataset['No Shows Decisions'] = noShowsDecison
 
 
+def probabilityDataset():
+    noShowDatasetPercentages = pd.read_csv("Datasets/Output/NoShowDataset.csv")
+
+    for placeID, column in noShowDatasetPercentages.iterrows():
+        number = int(round(column['No Shows Percentages']))
+        noShowDatasetPercentages.at[placeID, 'No Shows Percentages'] = number
+
+    noShowDatasetPercentages['No Shows Percentages'] = noShowDatasetPercentages['No Shows Percentages'].astype(int)
+
+    noShowDatasetPercentages.to_csv("Datasets/Output/NoShowDatasetPercentages.csv", index=False)
+
+
 # Export Dataset to .csv file
-decision = input("Do you want to generate a new No Show Dataset? Y/N:")
-decision_2 = input("Are you sure? Y/N:")
+decision = input("Do you want to generate a new No Show Dataset? Y/N: ")
+decision_2 = input("Are you sure? Y/N: ")
 
 if (decision == "y" or decision == "Y") and (decision_2 == "y" or decision_2 == "Y"):
     noShowDataset.to_csv("Datasets/Output/NoShowDataset.csv", index=False)
 else:
     print("Ok.")
+    print()
+    decision = input("Do you want to generate a new No Show Percentages Dataset? Y/N: ")
+    decision_2 = input("Are you sure? Y/N: ")
+
+    if (decision == "y" or decision == "Y") and (decision_2 == "y" or decision_2 == "Y"):
+        probabilityDataset()
+    else:
+        print("Ok.")
