@@ -81,16 +81,16 @@ def aggregation(parking, distance, deposit):
 
     for count in range(10):
         results = no_show_probability(parking, distance, deposit)
-        print(100 - int(re.sub('\W+', '', str(results[0]))))
-        print(results[1])
+        #print(100 - int(re.sub('\W+', '', str(results[0]))))
+        #print(results[1])
 
         probability = re.sub('\W+', '', str(results[0]))
         probability_list.append(probability)
 
         prediction_list.append(str(results[1]))
 
-    print(probability_list)
-    print(prediction_list)
+    #print(probability_list)
+    #print(prediction_list)
 
     probability_aggregation = max(set(probability_list), key=probability_list.count)
     prediction_aggregation = max(set(prediction_list), key=prediction_list.count)
