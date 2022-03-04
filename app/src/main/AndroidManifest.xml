@@ -25,16 +25,16 @@
             android:name=".EnterFactors"
             android:exported="false" />
         <activity
-            android:name=".activity_prototype_tester"
+            android:name=".PrototypeTester"
             android:exported="false" />
         <activity
-            android:name=".activity_startup_page"
+            android:name=".StartupPage"
             android:exported="false" />
         <activity
             android:name=".RestaurantSearch"
             android:exported="true" />
         <activity
-            android:name=".activity_intro"
+            android:name=".IntroPage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -43,10 +43,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity_register"
+            android:name=".RegisterPage"
             android:exported="true" />
         <activity
-            android:name=".activity_login"
+            android:name=".LoginPage"
             android:exported="true" />
     </application>
 
