@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class activity_prototype_tester extends AppCompatActivity {
+public class PrototypeTester extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

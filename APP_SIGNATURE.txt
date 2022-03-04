@@ -1,0 +1,37 @@
+8:54:41 PM: Executing task 'signingReport'...
+
+Executing tasks: [signingReport] in project C:\Users\alain\AndroidStudioProjects\RestaurantReservationApp
+
+Starting Gradle Daemon...
+Gradle Daemon started in 1 s 640 ms
+
+> Task :app:signingReport
+Variant: debug
+Config: debug
+Store: C:\Users\alain\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: B6:EA:74:9D:3B:30:37:E9:E1:B6:8D:8A:E7:61:CE:76
+SHA1: 8B:40:E1:C6:E0:40:F2:8B:7E:BD:F5:FF:B3:D9:B5:75:0C:72:6F:91
+SHA-256: DD:5B:01:12:E0:23:61:BC:E0:80:3B:67:CA:9E:5B:65:8C:44:91:3D:1B:D8:2E:5F:0B:37:A8:87:9B:74:85:EE
+Valid until: Wednesday, January 31, 2052
+----------
+Variant: release
+Config: null
+Store: null
+Alias: null
+----------
+Variant: debugAndroidTest
+Config: debug
+Store: C:\Users\alain\.android\debug.keystore
+Alias: AndroidDebugKey
+MD5: B6:EA:74:9D:3B:30:37:E9:E1:B6:8D:8A:E7:61:CE:76
+SHA1: 8B:40:E1:C6:E0:40:F2:8B:7E:BD:F5:FF:B3:D9:B5:75:0C:72:6F:91
+SHA-256: DD:5B:01:12:E0:23:61:BC:E0:80:3B:67:CA:9E:5B:65:8C:44:91:3D:1B:D8:2E:5F:0B:37:A8:87:9B:74:85:EE
+Valid until: Wednesday, January 31, 2052
+----------
+
+BUILD SUCCESSFUL in 7s
+1 actionable task: 1 executed
+
+Build Analyzer results available
+8:54:56 PM: Task execution finished 'signingReport'.
