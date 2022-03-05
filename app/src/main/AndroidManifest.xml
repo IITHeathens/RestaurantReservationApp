@@ -26,16 +26,8 @@
             android:exported="false" />
         <activity
             android:name=".PrototypeTester"
-            android:exported="false" />
-        <activity
-            android:name=".StartupPage"
-            android:exported="false" />
-        <activity
-            android:name=".RestaurantSearch"
-            android:exported="true" />
-        <activity
-            android:name=".IntroPage"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -43,11 +35,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".StartupPage"
+            android:exported="false" />
+        <activity
+            android:name=".RestaurantSearch"
+            android:exported="false" />
+        <activity
+            android:name=".IntroPage"
+            android:exported="false" />
+        <activity
             android:name=".RegisterPage"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".LoginPage"
-            android:exported="true" />
+            android:exported="false" />
     </application>
 
 </manifest>
