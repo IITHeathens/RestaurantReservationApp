@@ -1,7 +1,12 @@
 <resources>
-    <string name="app_name">Rest_Reserv_App</string>
+    <string name="app_name">Restaurant Reservation App</string>
     <string name="dot">•</string>
     <string name="made_in_india">Made In Srilanka ❤</string>
     <string name="main_headline">Book table in your favourite restaurants?</string>
     <string name="get_started">Get Started</string>
+    <string name="yes_choice">Yes</string>
+    <string name="no_choice">No</string>
+    <string name="parking">Parking:</string>
+    <string name="refundable_deposit">Refundable Deposit:</string>
+    <string name="distance_from_home">Distance from Home:</string>
 </resources>
