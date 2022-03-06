@@ -16,6 +16,7 @@ import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
 import java.util.*
 import java.util.concurrent.TimeUnit
+import kotlin.math.roundToInt
 
 class PrototypeTester : AppCompatActivity() {
 
@@ -140,14 +141,29 @@ class PrototypeTester : AppCompatActivity() {
 
                     val predictionOutput = findViewById<TextView>(R.id.prediction)
                     val probabilityOutput = findViewById<TextView>(R.id.probability)
+                    val parkingInput = findViewById<TextView>(R.id.parkingInput)
+                    val distanceInput = findViewById<TextView>(R.id.distanceInput)
+                    val depositInput = findViewById<TextView>(R.id.depositInput)
 
                     val inside = outputs[outputNameID] as Map<*, *>
 
                     val prediction = inside["Prediction"].toString()
                     val probability = inside["Probability"].toString() + "%"
 
-                    predictionOutput.setText(prediction)
+                    var distanceFloat = distance.toFloat()
+                    distanceFloat *= 100
+                    Log.d("[MATH]", "multiplied number is $distanceFloat")
+                    var distanceIntermediary = distanceFloat.roundToInt()
+                    Log.d("[MATH]", "rounded number is $distanceIntermediary")
+                    val distanceResult = distanceIntermediary.toFloat() / 100
+                    Log.d("[MATH]", "divded back number is $distanceResult")
+                    val distanceString = "$distanceResult%"
+
+                    predictionOutput.setText(if (prediction == "Won't show up") {"Won't Show Up"} else {"Will Show Up"})
                     probabilityOutput.setText(probability)
+                    parkingInput.setText(if (parking == "1") {"Yes"} else {"No"})
+                    distanceInput.setText(distanceString)
+                    depositInput.setText(if (refundableDeposit == "1") {"Yes"} else {"No"})
 
                     Log.d("[CLIENT]", "dbRef Predictions: Children count is: ${newsnapshot.childrenCount}")
 
