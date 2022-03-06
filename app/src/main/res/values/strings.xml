@@ -9,4 +9,7 @@
     <string name="parking">Parking:</string>
     <string name="refundable_deposit">Refundable Deposit:</string>
     <string name="distance_from_home">Distance from Home:</string>
+    <string name="inputs">Inputs</string>
+    <string name="results">Results</string>
+    <string name="confirm">Confirm</string>
 </resources>
