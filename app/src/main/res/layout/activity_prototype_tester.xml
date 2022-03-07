@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/a_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".PrototypeTester">
@@ -17,6 +18,98 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/depositLabel" />
 
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/resultsDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        app:dividerInsetEnd="16dp"
+        app:dividerInsetStart="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button1" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/parkingSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/parkingLabel"
+        app:layout_constraintEnd_toEndOf="@+id/distanceSlider"
+        app:layout_constraintStart_toStartOf="@+id/distanceSlider"
+        app:layout_constraintTop_toTopOf="@+id/parkingLabel"
+        tools:layout_editor_absoluteX="251dp"
+        tools:layout_editor_absoluteY="310dp" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/distanceSlider"
+        android:layout_width="193dp"
+        android:layout_height="48dp"
+        android:value="50.0"
+        android:valueFrom="0.0"
+        android:valueTo="100.0"
+        app:layout_constraintBottom_toBottomOf="@+id/distanceLabel"
+        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintLeft_toRightOf="@+id/distanceLabel"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/distanceLabel"
+        app:layout_constraintVertical_bias="0.482" />
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/depositSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/depositLabel"
+        app:layout_constraintEnd_toEndOf="@+id/distanceSlider"
+        app:layout_constraintStart_toStartOf="@+id/distanceSlider"
+        app:layout_constraintTop_toTopOf="@+id/depositLabel"
+        tools:layout_editor_absoluteX="251dp"
+        tools:layout_editor_absoluteY="310dp" />
+
+    <TextView
+        android:id="@+id/distanceLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/distance_from_home"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parkingLabel" />
+
+    <TextView
+        android:id="@+id/depositLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="48dp"
+        android:text="@string/refundable_deposit"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
+
+    <TextView
+        android:id="@+id/parkingLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="@string/parking"
+        app:layout_constraintStart_toStartOf="@+id/distanceLabel"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_navigation_menu" />
+
     <TextView
         android:id="@+id/prediction"
         android:layout_width="wrap_content"
@@ -26,6 +119,16 @@
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/resultsLabel" />
+
+    <TextView
+        android:id="@+id/probability"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="8dp"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/prediction" />
 
     <TextView
         android:id="@+id/parkingInput"
@@ -62,16 +165,6 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/probability"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="8dp"
-        android:textSize="18sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prediction" />
-
-    <TextView
         android:id="@+id/resultsLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,7 +173,7 @@
         android:text="@string/results"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button1" />
+        app:layout_constraintTop_toBottomOf="@+id/resultsDivider" />
 
     <TextView
         android:id="@+id/inputsLabel"
@@ -93,110 +186,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/probability" />
-
-    <RadioGroup
-        android:id="@+id/parkingYN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checkedButton="@+id/parkingN"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/parkingLabel"
-        app:layout_constraintEnd_toEndOf="@+id/distanceSlider"
-        app:layout_constraintStart_toStartOf="@+id/distanceSlider"
-        app:layout_constraintTop_toTopOf="@+id/parkingLabel"
-        tools:layout_editor_absoluteX="239dp">
-
-        <RadioButton
-            android:id="@+id/parkingY"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/yes_choice"
-            tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="55dp"
-            tools:layout_editor_absoluteX="151dp"
-            tools:layout_editor_absoluteY="16dp" />
-
-        <RadioButton
-            android:id="@+id/parkingN"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/no_choice"
-            tools:layout_conversion_absoluteHeight="48dp"
-            tools:layout_conversion_absoluteWidth="50dp"
-            tools:layout_editor_absoluteX="206dp"
-            tools:layout_editor_absoluteY="16dp" />
-    </RadioGroup>
-
-    <com.google.android.material.slider.Slider
-        android:id="@+id/distanceSlider"
-        android:layout_width="193dp"
-        android:layout_height="48dp"
-        android:value="50.0"
-        android:valueFrom="0.0"
-        android:valueTo="100.0"
-        app:layout_constraintBottom_toBottomOf="@+id/distanceLabel"
-        app:layout_constraintHorizontal_bias="0.75"
-        app:layout_constraintLeft_toRightOf="@+id/distanceLabel"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/distanceLabel"
-        app:layout_constraintVertical_bias="0.482" />
-
-    <RadioGroup
-        android:id="@+id/depositYN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:baselineAligned="false"
-        android:checkedButton="@+id/depositN"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="@+id/depositLabel"
-        app:layout_constraintStart_toStartOf="@+id/parkingYN"
-        app:layout_constraintTop_toTopOf="@+id/depositLabel"
-        tools:layout_editor_absoluteX="307dp">
-
-        <RadioButton
-            android:id="@+id/depositY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/yes_choice" />
-
-        <RadioButton
-            android:id="@+id/depositN"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/no_choice" />
-
-    </RadioGroup>
-
-    <TextView
-        android:id="@+id/distanceLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/distance_from_home"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/parkingLabel" />
-
-    <TextView
-        android:id="@+id/depositLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/refundable_deposit"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/distanceLabel" />
-
-    <TextView
-        android:id="@+id/parkingLabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="@string/parking"
-        app:layout_constraintStart_toStartOf="@+id/distanceLabel"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/parkingInputLabel"
@@ -227,5 +216,37 @@
         android:text="@string/refundable_deposit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/distanceInputLabel" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/resultsView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="resultsLabel, prediction, probability, inputsLabel, parkingInputLabel, distanceInputLabel, depositInputLabel, parkingInput, distanceInput, depositInput"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultsDivider" />
+
+    <!--    <com.google.android.material.tabs.TabLayout-->
+    <!--        android:id="@+id/tabs"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent">-->
+
+    <!--        <com.google.android.material.tabs.TabItem-->
+    <!--            android:id="@+id/inputs"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/inputs" />-->
+
+    <!--        <com.google.android.material.tabs.TabItem-->
+    <!--            android:id="@+id/results"-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="wrap_content"-->
+    <!--            android:text="@string/results" />-->
+
+    <!--    </com.google.android.material.tabs.TabLayout>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

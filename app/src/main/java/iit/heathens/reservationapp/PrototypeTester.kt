@@ -1,12 +1,22 @@
 package iit.heathens.reservationapp
 
+import android.app.ActivityOptions
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
-import android.widget.RadioButton
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
+import androidx.constraintlayout.widget.Group
+import androidx.transition.TransitionManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.slider.Slider
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialFade
+import com.google.android.material.transition.platform.MaterialSharedAxis
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -14,8 +24,6 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import java.util.*
-import java.util.concurrent.TimeUnit
 import kotlin.math.roundToInt
 
 class PrototypeTester : AppCompatActivity() {
@@ -29,9 +37,71 @@ class PrototypeTester : AppCompatActivity() {
         var buttonCount = 0
     }
 
+    private var parking = ""
+    private var distance = ""
+    private var refundableDeposit = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val enter = MaterialSharedAxis(MaterialSharedAxis.X, false).apply {
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+            excludeTarget(androidx.appcompat.R.id.action_bar_container, true)
+            excludeTarget(R.id.bottom_navigation, true)
+        }
+        window.enterTransition = enter
+
+        // Allow Activity A’s exit transition to play at the same time as this Activity’s
+        // enter transition instead of playing them sequentially.
+        window.allowEnterTransitionOverlap = true
+
+        val exit = MaterialSharedAxis(MaterialSharedAxis.X, true).apply {
+
+            // Only run the transition on the contents of this activity, excluding
+            // system bars or app bars if provided by the app’s theme.
+            excludeTarget(android.R.id.statusBarBackground, true)
+            excludeTarget(android.R.id.navigationBarBackground, true)
+            excludeTarget(androidx.appcompat.R.id.action_bar_container, true)
+            excludeTarget(R.id.bottom_navigation, true)
+        }
+        window.exitTransition = exit
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_prototype_tester)
+        restoreInstanceState(intent)
+
+        //restoreInstanceState(savedInstanceState)
+
+        val resultsView = findViewById<Group>(R.id.resultsView)
+        val resultsViewRoot = resultsView.rootView
+        resultsView.visibility = View.INVISIBLE
+
+
+        val bottomNavigationBar = findViewById<BottomNavigationView>(R.id.bottom_navigation)
+
+        bottomNavigationBar.selectedItemId = R.id.inputs
+
+        bottomNavigationBar.setOnItemSelectedListener { item ->
+            when(item.itemId) {
+                R.id.inputs -> {
+                    // Respond to navigation item 1 click
+                    true
+                }
+                R.id.results -> {
+                    val toResultsIntent = Intent(this, PrototypeResults::class.java)
+                    val bundle = ActivityOptions.makeSceneTransitionAnimation(this).toBundle()
+                    Log.d("[NAV BAR]", "Intent processing...")
+//                    resultsIntent.putExtra("Correct", correctGuesses.toString())
+//                    resultsIntent.putExtra("Incorrect", incorrectGuesses.toString())
+
+                    saveInstanceState(toResultsIntent)
+
+                    startActivity(toResultsIntent, bundle)
+                    true
+                }
+                else -> false
+            }
+        }
 
         // Write a message to the database
         val database = Firebase.database
@@ -39,9 +109,9 @@ class PrototypeTester : AppCompatActivity() {
 
         //dbRef.setValue("Hello, World!")
 
-        val parkingYes = findViewById<RadioButton>(R.id.parkingY)
+        val parkingSwitch = findViewById<SwitchCompat>(R.id.parkingSwitch)
         val distanceSlider = findViewById<Slider>(R.id.distanceSlider)
-        val depositYes = findViewById<RadioButton>(R.id.depositY)
+        val depositSwitch = findViewById<SwitchCompat>(R.id.depositSwitch)
 
         val confirmBttn = findViewById<Button>(R.id.button1)
 
@@ -49,14 +119,10 @@ class PrototypeTester : AppCompatActivity() {
         completionChecks.clearedPrediction = true
         completionChecks.check = ""
 
-
-        var parking = ""
-        var distance = ""
-        var refundableDeposit = ""
-
         val dbRefInputs = database.getReference("/Python AI Server/Input Factors/")
 
         var nameID = ""
+
 
         dbRefInputs.addValueEventListener(object: ValueEventListener {
 
@@ -159,11 +225,27 @@ class PrototypeTester : AppCompatActivity() {
                     Log.d("[MATH]", "divded back number is $distanceResult")
                     val distanceString = "$distanceResult%"
 
+                    //Print to Output Labels with Animations
                     predictionOutput.setText(if (prediction == "Won't show up") {"Won't Show Up"} else {"Will Show Up"})
                     probabilityOutput.setText(probability)
+
                     parkingInput.setText(if (parking == "1") {"Yes"} else {"No"})
                     distanceInput.setText(distanceString)
                     depositInput.setText(if (refundableDeposit == "1") {"Yes"} else {"No"})
+
+                    val contextView = findViewById<View>(R.id.a_container)
+
+                    val materialFade = MaterialFade().apply {
+                        duration = 150L
+                    }
+                    TransitionManager.beginDelayedTransition(resultsViewRoot as ViewGroup, materialFade)
+                    resultsView.visibility = View.VISIBLE
+
+                    Snackbar.make(contextView, "Success.", Snackbar.LENGTH_SHORT)
+                        .setAction("DISMISS") {
+                            // Responds to click on the action
+                        }
+                        .show()
 
                     Log.d("[CLIENT]", "dbRef Predictions: Children count is: ${newsnapshot.childrenCount}")
 
@@ -192,6 +274,16 @@ class PrototypeTester : AppCompatActivity() {
 
         confirmBttn.setOnClickListener {
 
+            val contextView = findViewById<View>(R.id.a_container)
+
+            resultsView.visibility = View.INVISIBLE
+
+            Snackbar.make(contextView, "Data sent successfully.", Snackbar.LENGTH_SHORT)
+                .setAction("DISMISS") {
+                    // Responds to click on the action
+                }
+                .show()
+
             completionChecks.buttonCount += 1
 
             if (!completionChecks.childrenIsOne) {
@@ -211,7 +303,7 @@ class PrototypeTester : AppCompatActivity() {
                 completionChecks.completedPrediction = false
             }
 
-            parking = if (parkingYes.isChecked) {
+            parking = if (parkingSwitch.isChecked) {
                 "1"
             } else {
                 "0"
@@ -219,7 +311,7 @@ class PrototypeTester : AppCompatActivity() {
 
             distance = distanceSlider.value.toString()
 
-            refundableDeposit = if (depositYes.isChecked) {
+            refundableDeposit = if (depositSwitch.isChecked) {
                 "1"
             } else {
                 "0"
@@ -266,6 +358,42 @@ class PrototypeTester : AppCompatActivity() {
 
             //TimeUnit.SECONDS.sleep(2L)
 
+        }
+    }
+
+    private fun saveInstanceState(toResultsIntent: Intent) {
+        val parkingSwitch = findViewById<SwitchCompat>(R.id.parkingSwitch)
+        val distanceSlider = findViewById<Slider>(R.id.distanceSlider)
+        val depositSwitch = findViewById<SwitchCompat>(R.id.depositSwitch)
+
+        parking = if (parkingSwitch.isChecked) {"1"} else {"0"}
+        distance = distanceSlider.value.toString()
+        refundableDeposit = if (depositSwitch.isChecked) {"1"} else {"0"}
+
+        toResultsIntent.putExtra("Parking", parking)
+        toResultsIntent.putExtra("Distance", distance)
+        toResultsIntent.putExtra("Deposit", refundableDeposit)
+
+        Log.d("[TRANSITION INPUTS]", "Saved: $parking, $distance, $refundableDeposit")
+    }
+
+    private fun restoreInstanceState(fromResultsIntent: Intent) {
+        Log.d("[TRANSITION INPUTS]", "Entered: $parking, $distance, $refundableDeposit")
+
+        if (fromResultsIntent.extras != null) {
+            val parking = fromResultsIntent.getStringExtra("Parking").toString()
+            val distance = fromResultsIntent.getStringExtra("Distance").toString()
+            val refundableDeposit = fromResultsIntent.getStringExtra("Deposit").toString()
+
+            Log.d("[TRANSITION INPUTS]", "Retrieved: $parking, $distance, $refundableDeposit")
+
+            val parkingSwitch = findViewById<SwitchCompat>(R.id.parkingSwitch)
+            val distanceSlider = findViewById<Slider>(R.id.distanceSlider)
+            val depositSwitch = findViewById<SwitchCompat>(R.id.depositSwitch)
+
+            parkingSwitch.isChecked = parking == "1"
+            distanceSlider.value = distance.toFloat()
+            depositSwitch.isChecked = refundableDeposit == "1"
         }
     }
 
