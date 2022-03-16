@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Login'),
+        title: const Text('Sign Up'),
       ),
       body: Column(children: <Widget>[
-        const Login(),
+        const SignUp(),
         ElevatedButton( //Temporary
             onPressed: () {
               Navigator.pop(context);
@@ -21,23 +21,21 @@ class LoginPage extends StatelessWidget {
   }
 }
 
-class Login extends StatefulWidget {
-  const Login({Key? key}) : super(key: key);
+class SignUp extends StatefulWidget {
+  const SignUp({Key? key}) : super(key: key);
 
   @override
-  State<Login> createState() => _LoginState();
+  State<SignUp> createState() => _SignUpState();
 }
 
-class _LoginState extends State<Login> {
+class _SignUpState extends State<SignUp> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10),
-      child: SizedBox(
-        height: 380,
+        padding: const EdgeInsets.all(10),
         child: ListView(
           children: <Widget>[
             Container(
@@ -54,7 +52,7 @@ class _LoginState extends State<Login> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'Sign in',
+                  'Login in',
                   style: TextStyle(fontSize: 20),
                 )),
             Container(
@@ -63,7 +61,27 @@ class _LoginState extends State<Login> {
                 controller: nameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'User Name',
+                  labelText: 'Full Name',
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Address',
+                ),
+              ),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                controller: nameController,
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Phone number',
                 ),
               ),
             ),
@@ -78,42 +96,20 @@ class _LoginState extends State<Login> {
                 ),
               ),
             ),
-            TextButton(
-              onPressed: () {
-                //forgot password screen
-              },
-              child: const Text(
-                'Forgot Password',
-              ),
-            ),
+
             Container(
                 height: 50,
-                padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
+                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: ElevatedButton(
-                  child: const Text('Login'),
+                  child: const Text('Sign Up'),
                   onPressed: () {
                     print(nameController.text);
                     print(passwordController.text);
                   },
-                )),
-            Row(
-              children: <Widget>[
-                const Text('Does not have account?'),
-                TextButton(
-                  child: const Text(
-                    'Sign in',
-                    style: TextStyle(fontSize: 20),
-                  ),
-                  onPressed: () {
-                    //signup screen
-                  },
                 )
-              ],
-              mainAxisAlignment: MainAxisAlignment.center,
             ),
+
           ],
-        ),
-      ),
-    );
+        ));
   }
 }

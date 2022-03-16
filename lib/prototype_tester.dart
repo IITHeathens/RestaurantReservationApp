@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:restaurant_reservation_app/custom_color_swatch.dart';
 
-import 'login.dart';
+import 'login_page.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
