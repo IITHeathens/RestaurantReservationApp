@@ -12,19 +12,19 @@ class LoginPage extends StatelessWidget {
       ),
       body: Column(children: <Widget>[
         const Login(),
-        ElevatedButton( //Temporary
+        ElevatedButton(
             onPressed: () {
               Navigator.pop(context);
             },
             child: const Text("Go Back")),
         ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const SignUp()),
-              );
-            },
-            child: Text("Sign up"),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const SignUp()),
+            );
+          },
+          child: const Text("Sign up"),
         ),
       ]),
     );
