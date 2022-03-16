@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
-//import './login.dart';
-//import './signup.dart';
+import 'custom_color_swatch.dart';
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
+
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Login',
+      theme: ThemeData(
+        primarySwatch: CustomColorSwatch.swatch,
+      ),
+      home: const HomeApp(),
+    );
+  }
 }
 
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
+class HomeApp extends StatelessWidget {
+  const HomeApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Text('Working');
+  }
+}
+
+
+/*
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
   TextEditingController nameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
@@ -92,4 +118,4 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
           ],
         ));
   }
-}
+}*/
