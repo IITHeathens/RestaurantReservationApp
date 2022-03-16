@@ -1,33 +1,26 @@
 import 'package:flutter/material.dart';
-import 'custom_color_swatch.dart';
-
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login',
-      theme: ThemeData(
-        primarySwatch: CustomColorSwatch.swatch,
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Login'),
       ),
-      home: const HomeApp(),
+      body: Column(children: <Widget>[
+        const Login(),
+        ElevatedButton( //Temporary
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text("Go Back")),
+      ]),
     );
   }
 }
 
-class HomeApp extends StatelessWidget {
-  const HomeApp({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const Text('Working');
-  }
-}
-
-
-/*
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
 
@@ -42,7 +35,9 @@ class _LoginState extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
+      child: SizedBox(
+        height: 380,
         child: ListView(
           children: <Widget>[
             Container(
@@ -87,7 +82,9 @@ class _LoginState extends State<Login> {
               onPressed: () {
                 //forgot password screen
               },
-              child: const Text('Forgot Password',),
+              child: const Text(
+                'Forgot Password',
+              ),
             ),
             Container(
                 height: 50,
@@ -98,8 +95,7 @@ class _LoginState extends State<Login> {
                     print(nameController.text);
                     print(passwordController.text);
                   },
-                )
-            ),
+                )),
             Row(
               children: <Widget>[
                 const Text('Does not have account?'),
@@ -116,6 +112,8 @@ class _LoginState extends State<Login> {
               mainAxisAlignment: MainAxisAlignment.center,
             ),
           ],
-        ));
+        ),
+      ),
+    );
   }
-}*/
+}
