@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:restaurant_reservation_app/custom_color_swatch.dart';
 
+import 'login.dart';
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -26,7 +28,8 @@ class UserManagement {
       // This must be true
       handleCodeInApp: true,
       iOSBundleId: 'iit.heathens.reservationapp',
-      androidPackageName: 'iit.heathens.reservationapp.restaurant_reservation_app',
+      androidPackageName:
+      'iit.heathens.reservationapp.restaurant_reservation_app',
       // installIfNotAvailable
       androidInstallApp: true,
       // minimumVersion
@@ -34,18 +37,18 @@ class UserManagement {
 
   verify() {
     var emailAuth = 'alainjiehfeng@gmail.com';
-    FirebaseAuth.instance.sendSignInLinkToEmail(
-        email: emailAuth, actionCodeSettings: acs)
-        .catchError((onError) => print('Error sending email verification $onError'))
+    FirebaseAuth.instance
+        .sendSignInLinkToEmail(email: emailAuth, actionCodeSettings: acs)
+        .catchError(
+            (onError) => print('Error sending email verification $onError'))
         .then((value) => print('Successfully sent email verification'));
   }
 
   register() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: "alainjiehfeng@gmail.com",
-          password: "Heathens123567"
-      );
+      UserCredential userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+          email: "alainjiehfeng@gmail.com", password: "Heathens123567");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -59,10 +62,9 @@ class UserManagement {
 
   signIn() async {
     try {
-      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: "alainjiehfeng@gmail.com",
-          password: "Heathens123567"
-      );
+      UserCredential userCredential = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+          email: "alainjiehfeng@gmail.com", password: "Heathens123567");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -75,7 +77,8 @@ class UserManagement {
 
 class AIServerIntegration {
   static FirebaseDatabase database = database = FirebaseDatabase.instance;
-  static DatabaseReference reference = FirebaseDatabase.instance.ref("Python AI Server/Inputs/0");
+  static DatabaseReference reference =
+  FirebaseDatabase.instance.ref("Python AI Server/Inputs/0");
 
   AIServerIntegration() {
     database = FirebaseDatabase.instance;
@@ -87,7 +90,8 @@ class AIServerIntegration {
   }
 
   static DatabaseReference getOutputsDBReference() {
-    DatabaseReference outputsReference = FirebaseDatabase.instance.ref("Python AI Server/Predictions/0");
+    DatabaseReference outputsReference =
+    FirebaseDatabase.instance.ref("Python AI Server/Predictions/0");
     return outputsReference;
   }
 }
@@ -99,17 +103,14 @@ class InputVariables {
 }
 
 class OutputVariables {
-  static ValueNotifier<String> predictionListener = ValueNotifier<String>('No Prediction');
-  static ValueNotifier<String> percentageListener = ValueNotifier<String>('No Percentage');
+  static ValueNotifier<String> predictionListener =
+  ValueNotifier<String>('No Prediction');
+  static ValueNotifier<String> percentageListener =
+  ValueNotifier<String>('No Percentage');
 }
 
 class PrototypeTester extends StatelessWidget {
   const PrototypeTester({Key? key}) : super(key: key);
-
-  setResults(var data) {
-    OutputVariables.predictionListener.value = data['Prediction'];
-    OutputVariables.percentageListener.value = data['Probability'];
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -117,20 +118,36 @@ class PrototypeTester extends StatelessWidget {
       title: 'Prototype Tester',
       theme: ThemeData(
         primarySwatch: CustomColorSwatch.swatch,
-        /*primaryColor: Color(0xFF2FAFE7),
-        primaryColorLight: const Color(0xFF73E1FF),
-        primaryColorDark: const Color(0xFF0080B5),*/
       ),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Prototype Tester'),
-        ),
-        body: Column(
-          children: <Widget>[
-            const InputsContainer(),
-            ElevatedButton(
+      home: const HomeApp(),
+    );
+  }
+}
+
+class HomeApp extends StatelessWidget {
+  const HomeApp({Key? key}) : super(key: key);
+
+  setResults(var data) {
+
+    OutputVariables.predictionListener.value = data['Prediction'];
+    OutputVariables.percentageListener.value = data['Probability'] + "%";
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Prototype Tester'),
+      ),
+      body: Column(
+        children: <Widget>[
+          const InputsContainer(),
+          Container(
+            margin: const EdgeInsets.only(bottom: 40),
+            child: ElevatedButton(
               onPressed: () async {
-                DatabaseReference reference = AIServerIntegration.getDBReference();
+                DatabaseReference reference =
+                AIServerIntegration.getDBReference();
                 //reference.child("Inputs/0");
 
                 String parking = "0";
@@ -149,17 +166,19 @@ class PrototypeTester extends StatelessWidget {
                 }
 
                 var factors = {
-                  "Parking" : parking,
-                  "Percentage Distance" : InputVariables.distanceListener.value.toString(),
-                  "Refundable Deposit" : deposit,
+                  "Parking": parking,
+                  "Percentage Distance":
+                  InputVariables.distanceListener.value.toString(),
+                  "Refundable Deposit": deposit,
                 };
 
                 await reference.update({
-                  "Done" : "Yes",
+                  "Done": "Yes",
                   "Factors": factors,
                 });
 
-                DatabaseReference outputsReference = AIServerIntegration.getOutputsDBReference();
+                DatabaseReference outputsReference =
+                AIServerIntegration.getOutputsDBReference();
 
                 var data;
 
@@ -178,16 +197,24 @@ class PrototypeTester extends StatelessWidget {
               },
               child: const Text('AI Recommendation'),
             ),
-            const InputResults(),
-            const PredictionResults(),
-          ],
-        ),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const LoginPage()),
+              );
+            },
+            child: const Text("Login"),
+          ),
+          const InputResults(),
+          const PredictionResults(),
+        ],
       ),
     );
   }
-
-
 }
+
 
 class InputResults extends StatelessWidget {
   const InputResults({Key? key}) : super(key: key);
@@ -195,7 +222,7 @@ class InputResults extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 170,
       child: Column(
         children: <Widget>[
           ValueListenableBuilder(
@@ -240,8 +267,7 @@ class PredictionResults extends StatelessWidget {
           ValueListenableBuilder(
             valueListenable: OutputVariables.percentageListener,
             builder: (context, value, widget) {
-              return Text(
-                  'Probability to Show Up: $value');
+              return Text('Probability to Show Up: $value');
             },
           ),
         ],
