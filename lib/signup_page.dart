@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import './select_factor_page.dart';
 
 class SignUpPage extends StatelessWidget {
   const SignUpPage({Key? key}) : super(key: key);
@@ -11,12 +12,6 @@ class SignUpPage extends StatelessWidget {
       ),
       body: Column(children: <Widget>[
         const SignUp(),
-        ElevatedButton(
-            //Temporary
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text("Go Back")),
       ]),
     );
   }
@@ -108,6 +103,21 @@ class _SignUpState extends State<SignUp> {
                       print(passwordController.text);
                     },
                   )),
+              ElevatedButton(
+                //Temporary
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Go Back")),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SelectFactor()),
+                  );
+                },
+                child: const Text("Sign up"),
+              ),
             ],
           )),
     );
