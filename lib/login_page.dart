@@ -24,7 +24,7 @@ class LoginPage extends StatelessWidget {
               MaterialPageRoute(builder: (context) => const SignUp()),
             );
           },
-          child: const Text("Sign up"),
+          child: const Text('Sign Up'),
         ),
       ]),
     );

@@ -49,7 +49,7 @@ class _SignUpState extends State<SignUp> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'Login in',
+                    'Sign Up',
                     style: TextStyle(fontSize: 20),
                   )),
               Container(
@@ -108,7 +108,7 @@ class _SignUpState extends State<SignUp> {
                   onPressed: () {
                     Navigator.pop(context);
                   },
-                  child: const Text("Go Back")),
+                  child: const Text('Go Back')),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -116,7 +116,7 @@ class _SignUpState extends State<SignUp> {
                     MaterialPageRoute(builder: (context) => const SelectFactor()),
                   );
                 },
-                child: const Text("Sign up"),
+                child: const Text('Selection Page'),
               ),
             ],
           )),
