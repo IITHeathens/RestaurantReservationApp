@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_reservation_app/signup_page.dart';
 
@@ -26,6 +27,7 @@ class LoginPage extends StatelessWidget {
           },
           child: const Text('Sign Up'),
         ),
+        const SizedBox(height: 20),
       ]),
     );
   }
@@ -47,12 +49,12 @@ class _LoginState extends State<Login> {
     return Padding(
       padding: const EdgeInsets.all(10),
       child: SizedBox(
-        height: 380,
+        height: 500,
         child: ListView(
           children: <Widget>[
             Container(
                 alignment: Alignment.center,
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(15),
                 child: const Text(
                   'Plebs',
                   style: TextStyle(
@@ -102,13 +104,18 @@ class _LoginState extends State<Login> {
                 child: ElevatedButton(
                   child: const Text('Login'),
                   onPressed: () {
-                    print(nameController.text);
-                    print(passwordController.text);
+                    if (kDebugMode) {
+                      print(nameController.text);
+                    }
+                    if (kDebugMode) {
+                      print(passwordController.text);
+                    }
                   },
                 )),
             Row(
               children: <Widget>[
                 const Text('Does not have account?'),
+                const SizedBox(height: 20),
                 TextButton(
                   child: const Text(
                     'Sign in',
