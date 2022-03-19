@@ -9,8 +9,8 @@ class SelectionPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII'),
       ),
-      body: Column(children: <Widget>[
-        const Selection(),
+      body: Column(children: const <Widget>[
+        Selection(),
       ]),
     );
   }

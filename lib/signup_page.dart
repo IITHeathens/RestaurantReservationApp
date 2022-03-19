@@ -10,8 +10,8 @@ class SignUpPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Sign Up'),
       ),
-      body: Column(children: <Widget>[
-        const SignUp(),
+      body: Column(children: const <Widget>[
+        SignUp(),
       ]),
     );
   }
