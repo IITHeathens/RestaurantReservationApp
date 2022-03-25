@@ -104,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                     },
                   )),
               ElevatedButton(
-                //Temporary
+                  //Temporary
                   onPressed: () {
                     Navigator.pop(context);
                   },
@@ -113,7 +113,8 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SelectFactor()),
+                    MaterialPageRoute(
+                        builder: (context) => const SelectFactor()),
                   );
                 },
                 child: const Text('Selection Page'),

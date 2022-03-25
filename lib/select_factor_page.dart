@@ -45,38 +45,43 @@ class _SelectFactorState extends State<SelectFactor> {
               child: Text("    FACTORS   "),
             ),
             SizedBox(height: 8.0),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Selection()),
-                );
-              },
-              child: Row(
-                children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Text('Selection'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget> [
+                SizedBox(
+                  width: 110,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Selection()),
+                      );
+                    },
+                    child: const Text('Selection'),
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: Icon(
-                      Icons.info,
-                    ),
+                ),
+                const SizedBox(
+                  width: 50,
+                  child: Icon(
+                    Icons.info,
                   ),
-                ],
-              ),
-            ),
-            SizedBox(height: 40.0),
-            ElevatedButton(
-                //Temporary
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text("Go Back")),
+                ),
+              ],
+            )
           ],
         ),
       ),
     );
+    /*SizedBox(height: 40.0),
+      ElevatedButton(
+        //Temporary
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          child: const Text("Go Back")),
+      ],
+    ),)
+    ,
+    );*/
   }
 }

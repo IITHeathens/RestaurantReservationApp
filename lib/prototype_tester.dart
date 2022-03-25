@@ -22,14 +22,14 @@ Future<void> main() async {
 
 class UserManagement {
   var acs = ActionCodeSettings(
-    // URL you want to redirect back to. The domain (www.example.com) for this
-    // URL must be whitelisted in the Firebase Console.
+      // URL you want to redirect back to. The domain (www.example.com) for this
+      // URL must be whitelisted in the Firebase Console.
       url: 'https://www.example.com/finishSignUp?cartId=1234',
       // This must be true
       handleCodeInApp: true,
       iOSBundleId: 'iit.heathens.reservationapp',
       androidPackageName:
-      'iit.heathens.reservationapp.restaurant_reservation_app',
+          'iit.heathens.reservationapp.restaurant_reservation_app',
       // installIfNotAvailable
       androidInstallApp: true,
       // minimumVersion
@@ -48,7 +48,7 @@ class UserManagement {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-          email: "alainjiehfeng@gmail.com", password: "Heathens123567");
+              email: "alainjiehfeng@gmail.com", password: "Heathens123567");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -64,7 +64,7 @@ class UserManagement {
     try {
       UserCredential userCredential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(
-          email: "alainjiehfeng@gmail.com", password: "Heathens123567");
+              email: "alainjiehfeng@gmail.com", password: "Heathens123567");
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         print('No user found for that email.');
@@ -78,7 +78,7 @@ class UserManagement {
 class AIServerIntegration {
   static FirebaseDatabase database = database = FirebaseDatabase.instance;
   static DatabaseReference reference =
-  FirebaseDatabase.instance.ref("Python AI Server/Inputs/0");
+      FirebaseDatabase.instance.ref("Python AI Server/Inputs/0");
 
   AIServerIntegration() {
     database = FirebaseDatabase.instance;
@@ -91,7 +91,7 @@ class AIServerIntegration {
 
   static DatabaseReference getOutputsDBReference() {
     DatabaseReference outputsReference =
-    FirebaseDatabase.instance.ref("Python AI Server/Predictions/0");
+        FirebaseDatabase.instance.ref("Python AI Server/Predictions/0");
     return outputsReference;
   }
 }
@@ -104,9 +104,9 @@ class InputVariables {
 
 class OutputVariables {
   static ValueNotifier<String> predictionListener =
-  ValueNotifier<String>('No Prediction');
+      ValueNotifier<String>('No Prediction');
   static ValueNotifier<String> percentageListener =
-  ValueNotifier<String>('No Percentage');
+      ValueNotifier<String>('No Percentage');
 }
 
 class PrototypeTester extends StatelessWidget {
@@ -128,7 +128,6 @@ class HomeApp extends StatelessWidget {
   const HomeApp({Key? key}) : super(key: key);
 
   setResults(var data) {
-
     OutputVariables.predictionListener.value = data['Prediction'];
     OutputVariables.percentageListener.value = data['Probability'] + "%";
   }
@@ -147,7 +146,7 @@ class HomeApp extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () async {
                 DatabaseReference reference =
-                AIServerIntegration.getDBReference();
+                    AIServerIntegration.getDBReference();
                 //reference.child("Inputs/0");
 
                 String parking = "0";
@@ -168,7 +167,7 @@ class HomeApp extends StatelessWidget {
                 var factors = {
                   "Parking": parking,
                   "Percentage Distance":
-                  InputVariables.distanceListener.value.toString(),
+                      InputVariables.distanceListener.value.toString(),
                   "Refundable Deposit": deposit,
                 };
 
@@ -178,7 +177,7 @@ class HomeApp extends StatelessWidget {
                 });
 
                 DatabaseReference outputsReference =
-                AIServerIntegration.getOutputsDBReference();
+                    AIServerIntegration.getOutputsDBReference();
 
                 var data;
 
@@ -214,7 +213,6 @@ class HomeApp extends StatelessWidget {
     );
   }
 }
-
 
 class InputResults extends StatelessWidget {
   const InputResults({Key? key}) : super(key: key);
