@@ -41,8 +41,7 @@ class _SelectFactorState extends State<SelectFactor> {
                 )),
             SizedBox(height: 8.0),
             ElevatedButton(
-              onPressed: () {
-              },
+              onPressed: () {},
               child: Text("    FACTORS   "),
             ),
             SizedBox(height: 8.0),
@@ -53,12 +52,24 @@ class _SelectFactorState extends State<SelectFactor> {
                   MaterialPageRoute(builder: (context) => const Selection()),
                 );
               },
-              child: Text(" SELECTIONS"),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    flex: 1,
+                    child: Text('Selection'),
+                  ),
+                  Expanded(
+                    flex: 1,
+                    child: Icon(
+                      Icons.info,
+                    ),
+                  ),
+                ],
+              ),
             ),
-
             SizedBox(height: 40.0),
             ElevatedButton(
-              //Temporary
+                //Temporary
                 onPressed: () {
                   Navigator.pop(context);
                 },
@@ -69,4 +80,3 @@ class _SelectFactorState extends State<SelectFactor> {
     );
   }
 }
-
