@@ -34,6 +34,7 @@ class _SignUpState extends State<SignUp> {
     String _password;
     String _fullName;
     String _address;
+    String _phoneNumber;
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.all(10),
@@ -58,6 +59,7 @@ class _SignUpState extends State<SignUp> {
                   )),
               TextFormField(
                 decoration: InputDecoration(
+                  icon: Icon(Icons.person),
                     hintText: "Alex Johnson",
                     labelText: "Full Name",
                     suffixIcon: Icon(
@@ -73,8 +75,9 @@ class _SignUpState extends State<SignUp> {
                 },
                 onSaved: (val)=>_fullName=val!,
               ),
-              new TextFormField(
+              TextFormField(
                 decoration: InputDecoration(
+                  icon: Icon(Icons.mail),
                     hintText: "aa@bb.com",
                     labelText: "Email",
                     suffixIcon: Icon(
@@ -94,6 +97,7 @@ class _SignUpState extends State<SignUp> {
               ),
               TextFormField(
                 decoration: InputDecoration(
+                  icon: Icon(Icons.home),
                     hintText: "37 Steet Road Flower Avenue",
                     labelText: "Address",
                     suffixIcon: Icon(
@@ -109,8 +113,29 @@ class _SignUpState extends State<SignUp> {
                 },
                 onSaved: (val)=>_address=val!,
               ),
-              new TextFormField(
+              TextFormField(
                 decoration: InputDecoration(
+                  icon: Icon(Icons.phone),
+                  hintText: "0786160261",
+                  labelText: "Phone number",
+                  suffixIcon: Icon(
+                    Icons.error,
+                  ),
+                ),
+                keyboardType: TextInputType.number,
+                validator: (val){
+                  if (val?.length == 0)
+                    return "Please enter your correct number";
+                  else if (val?.length != 10)
+                    return "Please enter your correct number";
+                  else
+                    return null;
+                },
+                onSaved: (val)=>_phoneNumber=val!,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.vpn_key),
                     hintText: "Password",
                     labelText: "Password",
                     suffixIcon: Icon(
@@ -128,8 +153,9 @@ class _SignUpState extends State<SignUp> {
                 },
                 onSaved: (val)=>_password=val!,
               ),
-              new TextFormField(
+              TextFormField(
                 decoration: InputDecoration(
+                  icon: Icon(Icons.vpn_key),
                   hintText: "Confirm Password",
                   labelText: "Confirm Password",
                   suffixIcon: Icon(
@@ -147,6 +173,13 @@ class _SignUpState extends State<SignUp> {
                 },
                 onSaved: (val)=>_password=val!,
               ),
+
+
+
+
+
+
+
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
