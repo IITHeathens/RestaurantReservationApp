@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class SelectionPage extends StatelessWidget {
   const SelectionPage({Key? key}) : super(key: key);
 
@@ -7,11 +8,9 @@ class SelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('SELECTION PAGE'),
+        title: const Text('SELECTION_FACTOR_PAGE '),
       ),
-      body: Column(children: const <Widget>[
-        Selection(),
-      ]),
+      body: const Selection(),
     );
   }
 }
@@ -38,7 +37,7 @@ class _SelectionState extends State<Selection> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'this is what we are going to do here',
+                    'Select a customer',
                     style: TextStyle(
                         color: Colors.blue,
                         fontWeight: FontWeight.w500,
@@ -52,6 +51,16 @@ class _SelectionState extends State<Selection> {
                 icon: Icon(Icons.add, size: 20),
                 label: Text("SELECT CUSTOMER"),
               ),
+              Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.all(10),
+                  child: const Text(
+                    'Select a restaurant',
+                    style: TextStyle(
+                        color: Colors.blue,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 25),
+                  )),
               SizedBox(height: 40.0),
               ElevatedButton.icon(
                 onPressed: () {
@@ -72,3 +81,4 @@ class _SelectionState extends State<Selection> {
     );
   }
 }
+
