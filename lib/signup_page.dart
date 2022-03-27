@@ -8,7 +8,7 @@ class SignUpPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Sign Up'),
+        title: const Text('Sign Up '),
       ),
       body: Column(children: const <Widget>[
         SignUp(),
@@ -30,6 +30,10 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    String _email;
+    String _password;
+    String _fullName;
+    String _address;
     return Scaffold(
       body: Padding(
           padding: const EdgeInsets.all(10),
@@ -49,78 +53,129 @@ class _SignUpState extends State<SignUp> {
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(10),
                   child: const Text(
-                    'Sign Up',
+                    'Sign Up ',
                     style: TextStyle(fontSize: 20),
                   )),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Full Name',
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: "Alex Johnson",
+                    labelText: "Full Name",
+                    suffixIcon: Icon(
+                      Icons.error,
+                    ),
+                ),
+                keyboardType: TextInputType.name,
+                validator: (val){
+                  if (val?.length == 0)
+                    return "Please enter full name";
+                  else
+                    return null;
+                },
+                onSaved: (val)=>_fullName=val!,
+              ),
+              new TextFormField(
+                decoration: InputDecoration(
+                    hintText: "aa@bb.com",
+                    labelText: "Email",
+                    suffixIcon: Icon(
+                      Icons.error,
+                    ),
+                ),
+                keyboardType: TextInputType.emailAddress,
+                validator: (val){
+                  if (val?.length == 0)
+                    return "Please enter email";
+                  else if (!val!.contains("@"))
+                    return "Please enter valid email";
+                  else
+                    return null;
+                },
+                onSaved: (val)=>_email=val!,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                    hintText: "37 Steet Road Flower Avenue",
+                    labelText: "Address",
+                    suffixIcon: Icon(
+                      Icons.error,
+                    ),
+                ),
+                keyboardType: TextInputType.streetAddress,
+                validator: (val){
+                  if (val?.length == 0)
+                    return "Please enter address";
+                  else
+                    return null;
+                },
+                onSaved: (val)=>_address=val!,
+              ),
+              new TextFormField(
+                decoration: InputDecoration(
+                    hintText: "Password",
+                    labelText: "Password",
+                    suffixIcon: Icon(
+                     Icons.error,
+                    ),
+                ),
+                obscureText: true,
+                validator: (val){
+                  if (val!.length == 0)
+                    return "Please enter password";
+                  else if (val.length <= 5)
+                    return "Your password should be more then 6 char long";
+                  else
+                    return null;
+                },
+                onSaved: (val)=>_password=val!,
+              ),
+              new TextFormField(
+                decoration: InputDecoration(
+                  hintText: "Confirm Password",
+                  labelText: "Confirm Password",
+                  suffixIcon: Icon(
+                    Icons.error,
                   ),
                 ),
+                obscureText: true,
+                validator: (val){
+                  if (val!.length == 0)
+                    return "Please renter password";
+                  else if (val.length <= 5)
+                    return "Your password should be more then 6 char long";
+                  else
+                    return null;
+                },
+                onSaved: (val)=>_password=val!,
               ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Address',
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Phone number',
-                  ),
-                ),
-              ),
-              Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: TextField(
-                  obscureText: true,
-                  controller: passwordController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                  ),
-                ),
-              ),
-              Container(
-                  height: 50,
-                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                  child: ElevatedButton(
-                    child: const Text('Sign Up'),
-                    onPressed: () {
-                      print(nameController.text);
-                      print(passwordController.text);
-                    },
-                  )),
-              ElevatedButton(
-                  //Temporary
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Text('Go Back')),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(
-                        builder: (context) => const SelectFactor()),
+                    MaterialPageRoute(builder: (context) => const SignUp()),
                   );
                 },
-                child: const Text('Selection Page'),
+                child: const Text('Sign Up'),
               ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const SelectFactor()),
+                  );
+                },
+                child: const Text('Selection Factor Page'),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Go Back")),
             ],
           )),
     );
   }
 }
+
+
+
+
