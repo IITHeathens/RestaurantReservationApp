@@ -7,7 +7,7 @@ class SelectionPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII'),
+        title: const Text('SELECTION PAGE'),
       ),
       body: Column(children: const <Widget>[
         Selection(),

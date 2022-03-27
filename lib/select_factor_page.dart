@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import './selection.dart';
+import 'custom_color_swatch.dart';
 
 class SelectFactorPage extends StatelessWidget {
   const SelectFactorPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Flutter Demo',
-      debugShowCheckedModeBanner: false,
-      home: SelectFactor(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('SELECTION_FACTOR_PAGE '),
+      ),
+      body: const SelectFactor(),
     );
   }
 }
@@ -25,6 +27,9 @@ class _SelectFactorState extends State<SelectFactor> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: const Text('SELECTION_FACTOR_PAGE '),
+      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -33,18 +38,44 @@ class _SelectFactorState extends State<SelectFactor> {
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(10),
                 child: const Text(
-                  'this is what we are going to do here',
+                  'You can select either Factor  tab or Selection tab',
                   style: TextStyle(
                       color: Colors.blue,
                       fontWeight: FontWeight.w400,
-                      fontSize: 20),
+                      fontSize: 20
+                      ),
                 )),
-            SizedBox(height: 8.0),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text("    FACTORS   "),
+            SizedBox(height: 20.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget> [
+                SizedBox(
+                  width: 110,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Selection()),
+                      );
+                    },
+                    child: const Text('Factors'),
+                  ),
+                ),
+                SizedBox(
+                  width: 50,
+                  child: IconButton(
+                    icon: const Icon(Icons.info,),
+                    tooltip: 'Increase volume by 10',// no need this line
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Selection()),
+                      );
+                    },
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 8.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget> [
@@ -60,10 +91,17 @@ class _SelectFactorState extends State<SelectFactor> {
                     child: const Text('Selection'),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 50,
-                  child: Icon(
-                    Icons.info,
+                  child: IconButton(
+                    icon: const Icon(Icons.info,),
+                    tooltip: 'Increase volume by 10',// no need this line
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Selection()),
+                      );
+                    },
                   ),
                 ),
               ],
