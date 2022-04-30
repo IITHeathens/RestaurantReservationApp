@@ -45,7 +45,8 @@ class DefaultFirebaseOptions {
     appId: '1:223236194053:android:004a2251fb7f9a84f9816c',
     messagingSenderId: '223236194053',
     projectId: 'resresapp',
-    databaseURL: 'https://resresapp-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://resresapp-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'resresapp.appspot.com',
   );
 
@@ -54,10 +55,13 @@ class DefaultFirebaseOptions {
     appId: '1:223236194053:ios:e62553714a8d5b4cf9816c',
     messagingSenderId: '223236194053',
     projectId: 'resresapp',
-    databaseURL: 'https://resresapp-default-rtdb.asia-southeast1.firebasedatabase.app',
+    databaseURL:
+        'https://resresapp-default-rtdb.asia-southeast1.firebasedatabase.app',
     storageBucket: 'resresapp.appspot.com',
-    androidClientId: '223236194053-g3fiuufq1b8f2uud4ksg64bi8cfc5pgt.apps.googleusercontent.com',
-    iosClientId: '223236194053-n88ocra6ckcq7h9229fafaasnfmug5t4.apps.googleusercontent.com',
+    androidClientId:
+        '223236194053-g3fiuufq1b8f2uud4ksg64bi8cfc5pgt.apps.googleusercontent.com',
+    iosClientId:
+        '223236194053-n88ocra6ckcq7h9229fafaasnfmug5t4.apps.googleusercontent.com',
     iosBundleId: 'iit.heathens.reservationapp',
   );
 }
