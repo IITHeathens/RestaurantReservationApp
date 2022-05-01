@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_reservation_app/signup_page.dart';
@@ -22,7 +23,7 @@ class LoginPage extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const SignUp()),
+              _animationRoute(),
             );
           },
           child: const Text('Sign Up'),
@@ -31,6 +32,14 @@ class LoginPage extends StatelessWidget {
       ]),
     );
   }
+}
+
+Route _animationRoute() {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const SignUp(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child,)
+  );
 }
 
 class Login extends StatefulWidget {
