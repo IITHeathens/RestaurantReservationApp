@@ -1,0 +1,26 @@
+[
+  {
+    "placeImage": "images/Banares.jpg",
+    "placeName": "Banares, Colombo, Sri Lanka",
+    "placeItems": ["1","2","3","4","5"],
+    "minOrder": 20
+  },
+  {
+    "placeImage": "images/Cloud Cafe.jpg",
+    "placeName": "Cloud Cafe, Colombo, Sri Lanka",
+    "placeItems": ["1","2","3","4","5"],
+    "minOrder": 50
+  },
+  {
+    "placeImage": "images/Colombo's Cafe & Pastries.jpg",
+    "placeName": "Colombo's Cafe & Pastries, Colombo, Sri Lanka",
+    "placeItems": ["1","2","3","4","5"],
+    "minOrder": 20
+  },
+  {
+    "placeImage": "images/Graze Kitchen.jpg",
+    "placeName": "Graze Kitchen, Colombo, Sri Lanka",
+    "placeItems": ["1","2","3","4","5"],
+    "minOrder": 40
+  }
+]
