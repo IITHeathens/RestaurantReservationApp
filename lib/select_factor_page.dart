@@ -1,4 +1,6 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:restaurant_reservation_app/prototype_tester.dart';
 import './selection.dart';
 import 'custom_color_swatch.dart';
 
@@ -15,6 +17,8 @@ class SelectFactorPage extends StatelessWidget {
     );
   }
 }
+
+
 
 class SelectFactor extends StatefulWidget {
   const SelectFactor({Key? key}) : super(key: key);
@@ -43,7 +47,7 @@ class _SelectFactorState extends State<SelectFactor> {
                       color: Colors.blue,
                       fontWeight: FontWeight.w400,
                       fontSize: 20
-                      ),
+                  ),
                 )),
             SizedBox(height: 20.0),
             Row(
@@ -55,7 +59,7 @@ class _SelectFactorState extends State<SelectFactor> {
                     onPressed: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => const Selection()),
+                        _animationRoute(),
                       );
                     },
                     child: const Text('Factors'),
@@ -122,4 +126,12 @@ class _SelectFactorState extends State<SelectFactor> {
     ,
     );*/
   }
+}
+
+Route _animationRoute() {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const PrototypeTester(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          FadeTransition(opacity: animation, child: child,)
+  );
 }

@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import './select_factor_page.dart';
 
@@ -60,11 +61,11 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.person),
-                    hintText: "Alex Johnson",
-                    labelText: "Full Name",
-                    suffixIcon: Icon(
-                      Icons.error,
-                    ),
+                  hintText: "Alex Johnson",
+                  labelText: "Full Name",
+                  suffixIcon: Icon(
+                    Icons.error,
+                  ),
                 ),
                 keyboardType: TextInputType.name,
                 validator: (val){
@@ -78,11 +79,11 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.mail),
-                    hintText: "aa@bb.com",
-                    labelText: "Email",
-                    suffixIcon: Icon(
-                      Icons.error,
-                    ),
+                  hintText: "aa@bb.com",
+                  labelText: "Email",
+                  suffixIcon: Icon(
+                    Icons.error,
+                  ),
                 ),
                 keyboardType: TextInputType.emailAddress,
                 validator: (val){
@@ -98,11 +99,11 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.home),
-                    hintText: "37 Steet Road Flower Avenue",
-                    labelText: "Address",
-                    suffixIcon: Icon(
-                      Icons.error,
-                    ),
+                  hintText: "37 Steet Road Flower Avenue",
+                  labelText: "Address",
+                  suffixIcon: Icon(
+                    Icons.error,
+                  ),
                 ),
                 keyboardType: TextInputType.streetAddress,
                 validator: (val){
@@ -136,11 +137,11 @@ class _SignUpState extends State<SignUp> {
               TextFormField(
                 decoration: InputDecoration(
                   icon: Icon(Icons.vpn_key),
-                    hintText: "Password",
-                    labelText: "Password",
-                    suffixIcon: Icon(
-                     Icons.error,
-                    ),
+                  hintText: "Password",
+                  labelText: "Password",
+                  suffixIcon: Icon(
+                    Icons.error,
+                  ),
                 ),
                 obscureText: true,
                 validator: (val){
@@ -193,7 +194,7 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const SelectFactor()),
+                    _animationRoute(),
                   );
                 },
                 child: const Text('Selection Factor Page'),
@@ -209,6 +210,10 @@ class _SignUpState extends State<SignUp> {
   }
 }
 
-
-
-
+Route _animationRoute() {
+  return PageRouteBuilder(
+      pageBuilder: (context, animation, secondaryAnimation) => const SelectFactor(),
+      transitionsBuilder: (context, animation, secondaryAnimation, child) =>
+          SharedAxisTransition(animation: animation, secondaryAnimation: secondaryAnimation, transitionType: SharedAxisTransitionType.horizontal, child: child,)
+  );
+}

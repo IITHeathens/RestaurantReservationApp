@@ -27,7 +27,6 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
-  material_design_icon_flutter:
   flutter:
     sdk: flutter
   animated_splash_screen:
@@ -38,6 +37,7 @@ dependencies:
   firebase_core: ^1.13.1
   firebase_database: ^9.0.8
   firebase_auth: ^3.3.10
+  animations: ^2.0.2
 
 dev_dependencies:
   flutter_test:
@@ -55,11 +55,13 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
+  uses-material-design: true
+  assets:
+    - images/splash.jpg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
-  uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
   # assets:
@@ -77,10 +79,10 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
-   fonts:
-     - family: Samantha
-       fonts:
-         - asset: fonts/Samantha.ttf
+  #   fonts:
+  #     - family: Samantha
+  #       fonts:
+  #         - asset: fonts/Samantha.ttf
 
   #
   # For details regarding fonts from package dependencies,
